@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DisqueriaSeccion3</string>
+    <string name="app_identificador">Identificador</string>
+    <string name="app_artista">Artista</string>
+    <string name="app_album">Album</string>
+    <string name="app_fecha_de_publicaci_n">Fecha de publicación</string>
+</resources>
