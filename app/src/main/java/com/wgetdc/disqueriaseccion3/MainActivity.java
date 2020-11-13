@@ -2,7 +2,10 @@ package com.wgetdc.disqueriaseccion3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
         edtMain_artista = findViewById(R.id.edtMain_artista);
         edtMain_album = findViewById(R.id.edtMain_album);
         edtMain_fecha = findViewById(R.id.edtMain_fecha);
+    }
+
+    public void goToActivityDetalle(View view){
+        Intent activity = new Intent(this, detalleActivity.class);
+        startActivity(activity);
     }
 
     public void guardarDisco(View view){
@@ -51,7 +59,5 @@ public class MainActivity extends AppCompatActivity {
         }else {
             Toast.makeText(this, "Por favor, complete los campos", Toast.LENGTH_SHORT).show();
         }
-
-
     }
 }
