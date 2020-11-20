@@ -60,4 +60,43 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Por favor, complete los campos", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+    public void editarDisco(View view){
+        gestorBaseDeDatos gestor = new gestorBaseDeDatos(this, "disqueria", null, 1);
+        SQLiteDatabase db = gestor.getWritableDatabase();
+        
+        String id = edtMain_id.getText().toString();
+        String artista = edtMain_artista.getText().toString();
+        String album = edtMain_album.getText().toString();
+        String fecha = edtMain_fecha.getText().toString();
+        
+        ContentValues fila = new ContentValues();
+        fila.put("artista", artista);
+        fila.put("album", album);
+        fila.put("fecha", fecha);
+        
+        if (!id.isEmpty() && !artista.isEmpty() && !album.isEmpty() && !fecha.isEmpty()){
+            int filas = db.update("discos", fila, "id=" + id, null);
+            
+            if (filas == 1){
+                Toast.makeText(this, "Disco actualizado correctamente", Toast.LENGTH_SHORT).show();
+                db.close();
+                edtMain_id.setText("");
+                edtMain_artista.setText("");
+                edtMain_album.setText("");
+                edtMain_fecha.setText("");
+            }else {
+                Toast.makeText(this, "El disco que intentas actualizar, no existe", Toast.LENGTH_SHORT).show();
+                edtMain_id.setText("");
+                edtMain_artista.setText("");
+                edtMain_album.setText("");
+                edtMain_fecha.setText("");
+            }
+        }else{
+            Toast.makeText(this, "Antes de actualizar, complete todos los campos", Toast.LENGTH_SHORT).show();
+
+        }
+        db.close();
+    }
 }
